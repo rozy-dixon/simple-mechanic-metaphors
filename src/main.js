@@ -3,7 +3,7 @@
 
 // game config
 let config = {
-    parent: 'GAME TITLE',
+    parent: 'getting-up',
     type: Phaser.AUTO,
     physics: {
         default: 'arcade',
