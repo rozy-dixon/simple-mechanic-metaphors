@@ -16,15 +16,15 @@ class Play extends Phaser.Scene {
     }
 
     update() {
-        if (this.cursors.up.isDown) {
-            this.player.alpha -= .005
-        } else if (this.cursors.down.isDown) {
+        if (!this.gameOver && this.cursors.up.isDown) {
+            this.player.alpha -= .006
+        } else if (!this.gameOver && this.cursors.down.isDown) {
             this.player.alpha += .005
         }
 
-        if (this.cursors.up.isDown) {
+        if (!this.gameOver && this.cursors.up.isDown) {
             this.player.setAccelerationY(-500)
-        } else if (this.cursors.down.isDown) {
+        } else if (!this.gameOver && this.cursors.down.isDown) {
             this.player.setAccelerationY(500)
         } else {
             this.player.setAccelerationY(0)
@@ -35,8 +35,11 @@ class Play extends Phaser.Scene {
             this.gameOver = true;
         }
 
-        if (this.cursors.space.isDown && this.gameOver) {
-            this.reset()
+        if (this.gameOver) {
+            this.player.setAlpha(0)
+            if (this.cursors.space.isDown) {
+                this.reset()
+            }
         }
     }
 
